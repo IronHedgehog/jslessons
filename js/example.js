@@ -7,3 +7,4 @@ b = 5;
 console.log("a :>> ", a);
 console.log("b :>> ", b);
 b = 10;
+console.log("b :>> ", b);
