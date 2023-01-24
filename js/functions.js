@@ -122,10 +122,3 @@
 
 // const n = concatArrays([], [1]);
 // console.log("n :>> ", n);
-
-// function asdas(arr) {
-//   return arr.splice(1, 3, 7, 8, 9);
-// }
-
-// const m = asdas([1, 2, 3, 4, 5, 6]);
-// console.log("m :>> ", m);
