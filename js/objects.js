@@ -78,7 +78,7 @@ const bookShelf = {
   },
 
   addBooks(bookName) {
-    this.push(bookName);
+    this.books.push(bookName);
   },
 };
 
@@ -86,3 +86,5 @@ console.log("bookShelf :>> ", bookShelf);
 
 bookShelf.getBooks();
 bookShelf.addBooks("kniga3");
+
+
