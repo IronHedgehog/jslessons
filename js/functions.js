@@ -12,32 +12,7 @@
 
 //
 
-// 1)Напиши функцію includes(array, value), яка робить те саме,
-// що і метод масиву масив.includes(значення) - перевіряє,
-// чи є в масиві array значення value, повертаючи true якщо є і false в іншому випадку.
-
-// При виконанні цього завдання у тілі функції includes()
-// не можна використовувати метод масив.includes(значення).
-
-// 2) function findNumber(start, end, divisor) {
-//   let number;
-
-//   for (let i = start; i < end; i += 1) {
-//     if (i % divisor === 0) {
-//       number += i
-//       break
-//     }
-//   }
-//   return number;
-// }
-
-// Виконай рефакторинг функції findNumber(start, end, divisor) так, щоб вона:
-
-// повертала перше число від start до end, яке ділиться на divisor без залишку
-// не використала оператор break
-// не використовувала змінну number
-
-// 3)const start = 6;
+// 1)const start = 6;
 // const end = 27;
 // let number;
 
@@ -46,10 +21,9 @@
 //     number = i;
 //   }
 // }
-
 // Доповни код так, щоб у змінну number записувалося перше число від start до end, яке ділиться на 5 без залишку.
 
-// 4)function calculateTotalPrice(order) {
+// 2)function calculateTotalPrice(order) {
 //   let total = 0;
 
 //   for (let i = 0; i < order.length; i += 1) {
@@ -79,6 +53,31 @@
 
 // console.log('filterArray([1, 2, 3, 4, 5], 3) :>> ', filterArray([1, 2, 3, 4, 5], 3));
 // виконай рефакторинг функції filter Array(numbers, value) замінивши цикл for на for...of.
+
+// 3)Напиши функцію includes(array, value), яка робить те саме,
+// що і метод масиву масив.includes(значення) - перевіряє,
+// чи є в масиві array значення value, повертаючи true якщо є і false в іншому випадку.
+
+// При виконанні цього завдання у тілі функції includes()
+// не можна використовувати метод масив.includes(значення).
+
+// 4) function findNumber(start, end, divisor) {
+//   let number;
+
+//   for (let i = start; i < end; i += 1) {
+//     if (i % divisor === 0) {
+//       number += i
+//       break
+//     }
+//   }
+//   return number;
+// }
+
+// Виконай рефакторинг функції findNumber(start, end, divisor) так, щоб вона:
+
+// повертала перше число від start до end, яке ділиться на divisor без залишку
+// не використала оператор break
+// не використовувала змінну number
 
 // function calculateTotalPrice(order) {
 //   let total = 0;
