@@ -10,39 +10,84 @@
 // за допомогою методу масива та запишіть їй у змінну старт,
 // потім використайте цю змінну для заміни цього фрукта на "grapefruit"
 
-//
+const artem = {
+  name: "Artem",
+  lastName: "Faust",
+  age: 22,
+  jobs: [1, 2, 3, 4],
+  rest: 5,
 
-// 1)const start = 6;
+  minusJob() {
+    this.jobs.pop();
+  },
+
+  changeAge() {
+    this.age += 1;
+  },
+};
+
+artem.changeAge();
+artem.minusJob();
+artem.minusJob();
+// console.log("artem :>> ", artem);
+
+function convertor(kilometrs) {
+  const miles = kilometrs * 0.6214;
+  return miles;
+}
+
+const miles = convertor(1000);
+// console.log("miles :>> ", miles);
+
+function spliceArr(array) {
+  const start = array.indexOf("Orange");
+  array.splice(start, 1, "grapefruit");
+  return array;
+}
+
+const b = spliceArr(["Apple", "Orange", "Plum"]);
+// console.log("b :>> ", b);
+
+//
+// const start = 6;
 // const end = 27;
 // let number;
 
 // for (let i = start; i < end; i += 1) {
 //   if (i % 5 === 0) {
 //     number = i;
+//     break;
 //   }
 // }
-// Доповни код так, щоб у змінну number записувалося перше число від start до end, яке ділиться на 5 без залишку.
+// console.log("number :>> ", number);
 
-// 2)function calculateTotalPrice(order) {
+// Доповни код так, щоб у змінну number записувалося перше число від start до end,
+// яке ділиться на 5 без залишку.
+
+// function calculateTotalPrice(order) {
 //   let total = 0;
 
-//   for (let i = 0; i < order.length; i += 1) {
-//     total += order[i];
+// for (let i = 0; i < order.length; i += 1) {
+//   total += order[i];
+// }
+
+//   for (const i of order) {
+//     total = total + i;
 //   }
 
 //   return total;
 // }
 
-// console.log('calculateTotalPrice([12, 85, 37, 4]) :>> ', calculateTotalPrice([12, 85, 37, 4]));
+// const total = calculateTotalPrice([12, 85, 37, 4]);
+
+// console.log("total :>> ", total);
 
 // Виконай рефакторинг коду функції calculateTotalPrice(order) замінивши цикл for на for...of
 
-// 5)function filterArray(numbers, value) {
+// function filterArray(numbers, value) {
 //   const filteredNumbers = [];
 
-//   for (let i = 0; i < numbers.length; i += 1) {
-//     const number = numbers[i];
-
+//   for (const number of numbers) {
 //     if (number > value) {
 //       filteredNumbers.push(number);
 //     }
@@ -51,27 +96,38 @@
 //   return filteredNumbers;
 // }
 
-// console.log('filterArray([1, 2, 3, 4, 5], 3) :>> ', filterArray([1, 2, 3, 4, 5], 3));
+// const a = filterArray([1, 2, 3, 4, 5], 3);
+// console.log("a :>> ", a);
 // виконай рефакторинг функції filter Array(numbers, value) замінивши цикл for на for...of.
 
-// 3)Напиши функцію includes(array, value), яка робить те саме,
+function includes(array, value) {
+  for (const i of array) {
+    if (i === value) {
+      return true;
+    }
+  }
+  return false;
+}
+const a = includes([1, 2, 3, 4, 5], 3);
+console.log("a :>> ", a);
+
+// Напиши функцію includes(array, value), яка робить те саме,
 // що і метод масиву масив.includes(значення) - перевіряє,
 // чи є в масиві array значення value, повертаючи true якщо є і false в іншому випадку.
 
 // При виконанні цього завдання у тілі функції includes()
 // не можна використовувати метод масив.includes(значення).
 
-// 4) function findNumber(start, end, divisor) {
-//   let number;
-
+// function findNumber(start, end, divisor) {
 //   for (let i = start; i < end; i += 1) {
+//     console.log("i :>> ", i);
 //     if (i % divisor === 0) {
-//       number += i
-//       break
+//       return i;
 //     }
 //   }
-//   return number;
 // }
+
+// console.log("findNumber(0, 20, 5) :>> ", findNumber(0, 20, 5));
 
 // Виконай рефакторинг функції findNumber(start, end, divisor) так, щоб вона:
 
@@ -82,11 +138,17 @@
 // function calculateTotalPrice(order) {
 //   let total = 0;
 
+//   for (const i of order) {
+//     total += i;
+//   }
+
 //   return total;
 // }
 
-// calculateTotalPrice([12, 85, 37, 4])
+// const a = calculateTotalPrice([12, 85, 37, 4]);
 
-// Напиши функцію calculateTotalPrice(order),
+// console.log("a :>> ", a);
+
+// 8)Напиши функцію calculateTotalPrice(order),
 // яка приймає один параметр order - масив чисел і розраховує загальну суму його елементів.
 //  Загальна сума елементів повинна зберігатись у змінній total, яка повертається, як результат роботи функції.

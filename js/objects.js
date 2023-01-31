@@ -74,7 +74,7 @@ const bookShelf = {
   books: ["kniga1", "kniga2"],
 
   getBooks() {
-    // console.log("getBooks :>> ", "цей метод поверне усі книги");
+    console.log("getBooks :>> ", "цей метод поверне усі книги");
   },
 
   addBooks(bookName) {
@@ -86,5 +86,3 @@ console.log("bookShelf :>> ", bookShelf);
 
 bookShelf.getBooks();
 bookShelf.addBooks("kniga3");
-
-
