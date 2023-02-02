@@ -1,5 +1,9 @@
 //  Приклади обьектів
 
+let user1 = {
+  name: "Artem",
+  age: 18,
+};
 
 const computer = {
   monitor: "samsung",
@@ -30,34 +34,20 @@ const book = {
 
 // Звернення до властивостей
 
-// let name = user.firstName;
-// let country = user.location.country;
-
-// const asdasd = user["country"];
-
-// user.age = 23;
-
-// user.role = "administrator";
-
-// console.log("user :>> ", user);
-
-// console.log("asdasd :>> ", asdasd);
-
-// console.log("country :>> ", country);
-
-// console.log("name :>> ", name);
+const a = book.rating;
+console.log("a :>> ", a);
 
 // Короткі властивості
 
-const name = "Artem";
-const lastName = "asdasd";
-const age = 25;
+// const name = "Artem";
+// const lastName = "asdasd";
+// const age = 25;
 
-let user = {
-  name,
-  lastName,
-  age,
-};
+// let user = {
+//   name,
+//   lastName,
+//   age,
+// };
 
 // console.log("user :>> ", user);
 
@@ -75,7 +65,7 @@ const bookShelf = {
   },
 };
 
-console.log("bookShelf :>> ", bookShelf);
+// console.log("bookShelf :>> ", bookShelf);
 
 bookShelf.getBooks();
 bookShelf.addBooks("kniga3");
