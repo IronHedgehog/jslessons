@@ -1,12 +1,5 @@
 //  Приклади обьектів
 
-const animal = {
-  legs: 4,
-};
-
-const dog = Object.create(animal);
-
-dog.legs;
 
 const computer = {
   monitor: "samsung",
