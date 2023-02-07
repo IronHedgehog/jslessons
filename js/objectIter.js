@@ -181,3 +181,35 @@ function calculateMiddleAge(users) {
 
 const result = calculateMiddleAge(users);
 // console.log("result :>> ", result);
+
+const user2 = {
+  firstName: "Artem",
+  lastName: "12312",
+  age: 40,
+  location: {
+    country: "Ukraine",
+    city: "Kharkiv",
+  },
+  stats: {
+    follover: 1000000,
+    likes: 100000,
+  },
+};
+function hello({ firstName, lastName, location: { country, city } }) {
+  // const {
+  //   firstName,
+  //   lastName,
+  //   location: { country, city },
+  // } = user;
+
+  console.log(
+    "object :>> ",
+    `Привіт ${firstName} 
+  ${lastName} 
+  чи дійсно ви знаходитесь у місці 
+  ${country}, 
+  ${city}`
+  );
+}
+
+hello(user2);
