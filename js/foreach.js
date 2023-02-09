@@ -5,9 +5,9 @@ for (let i = 0; i < numbers.length; i += 1) {
   console.log(`Індекс ${i}, значення ${numbers[i]}`);
 }
 
-// Метод перебирання forEach
-numbers.forEach(function (number, index) {
-  console.log(`Індекс ${index}, значення ${number}`);
-});
+const a = [{ a: "b" }, { c: "e" }];
 
-numbers.forEach();
+// Метод перебирання forEach
+numbers.forEach(function (element) {
+  console.log(` значення ${element}`);
+});
