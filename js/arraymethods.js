@@ -110,3 +110,24 @@ console.log("allTrue :>> ", allTrue);
 const oneTrue = b.some((number) => number >= 0);
 
 console.log("oneTrue :>> ", oneTrue);
+
+// sort
+
+const students1 = [
+  { name: "Манго", score: 83, courses: ["математика", "фізика"] },
+  { name: "Полі", score: 59, courses: ["інформатика", "математика"] },
+  { name: "Аякс", score: 37, courses: ["фізика", "біологія"] },
+  { name: "Ківі", score: 94, courses: ["література", "інформатика"] },
+];
+
+const sortedByScore = [...students1]
+  .sort((a, b) => b.score - a.score)
+  .map((student) => student.name);
+
+// reduce
+
+const numbers1 = [24, 104, 123].reduce((start, number) => {
+  return start + number;
+}, 0);
+
+console.log("numbers1 :>> ", numbers1);
