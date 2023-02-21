@@ -1,64 +1,81 @@
-// Функція getCommonElements(firstArray, secondArray) приймає два масиви довільної довжини параметри firstArray
-// і secondArray, і повертає новий масив їх загальних елементів, тобто тих що є в обох масивах (foreach).
+// 1) Створи функцію sortByBalance(users)
+// так, щоб вона повертала масив користувачів відсортований за зростанням їх балансу (властивість balance)
+// за допомогою ланцюжка методів вивести імена юзерів відсортованих за зростанням їх балансу (sort,map)
 
-function getCommonElements(arr, arr1) {
-  const commonElements = [];
-  arr.forEach((item) => {
-    if (arr1.includes(item)) {
-      commonElements.push(item);
-    }
-  });
-
-  return commonElements;
-}
-
-console.log(
-  "getCommonElements([1, 2, 3], [2, 4]) :>> ",
-  getCommonElements([1, 2, 3], [2, 4])
-);
-
-console.log(
-  " getCommonElements([1, 2, 3], [2, 1, 17, 19]); :>> ",
-  getCommonElements([1, 2, 3], [2, 1, 17, 19])
-);
-console.log(
-  " getCommonElements([1, 2, 3], [2, 1, 17, 19]); :>> ",
-  getCommonElements([1, 2, 3], [2, 1, 17, 19])
-);
-console.log(
-  " getCommonElements([24, 12, 27, 3], [2, 1, 17, 19]); :>> ",
-  getCommonElements([24, 12, 27, 3], [12, 8, 3, 36, 27])
-);
-
-//  Доповни код так, щоб у змінній планетіLengths вийшов масив довжин назв планет.
-//  Обов'язково використовуй метод map().
-
-const planets = ["Earth", "Mars", "Venus", "Jupiter"];
-const planetsLengths = planets.map((planet) => planet.length);
-console.log("planetsLengths :>> ", planetsLengths);
-
-//  Використовуючи метод filter(), доповни код так, щоб:
-//  У змінній highSalaryFilter вийшов масив воркерів,
-// зарплатня яких  більше або дорівнює значенню змінної MIN_SALARY.
-//  У змінній findTopWorker знайшовся топовий робітник за допомогою змінної TOP_WORKER (find)
-
-const workers = [
-  { name: "A", salary: 5000 },
-  { name: "B", salary: 3000 },
-  { name: "C", salary: 2000 },
-  { name: "E", salary: 6000 },
-  { name: "F", salary: 10000, grade: "top worker" },
-  { name: "G", salary: 7000 },
+const users = [
+  {
+    name: "Moore Hensley",
+    email: "moorehensley@indexia.com",
+    eyeColor: "blue",
+    friends: ["Sharron Pace"],
+    isActive: false,
+    balance: 2811,
+    gender: "male",
+  },
+  {
+    name: "Sharlene Bush",
+    email: "sharlenebush@tubesys.com",
+    eyeColor: "blue",
+    friends: ["Briana Decker", "Sharron Pace"],
+    isActive: true,
+    balance: 3821,
+    gender: "female",
+  },
+  {
+    name: "Ross Vazquez",
+    email: "rossvazquez@xinware.com",
+    eyeColor: "green",
+    friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
+    isActive: false,
+    balance: 3793,
+    gender: "male",
+  },
+  {
+    name: "Elma Head",
+    email: "elmahead@omatom.com",
+    eyeColor: "green",
+    friends: ["Goldie Gentry", "Aisha Tran"],
+    isActive: true,
+    balance: 2278,
+    gender: "female",
+  },
+  {
+    name: "Carey Barr",
+    email: "careybarr@nurali.com",
+    eyeColor: "blue",
+    friends: ["Jordan Sampson", "Eddie Strong"],
+    isActive: true,
+    balance: 3951,
+    gender: "male",
+  },
+  {
+    name: "Blackburn Dotson",
+    email: "blackburndotson@furnigeer.com",
+    eyeColor: "brown",
+    friends: ["Jacklyn Lucas", "Linda Chapman"],
+    isActive: false,
+    balance: 1498,
+    gender: "male",
+  },
+  {
+    name: "Sheree Anthony",
+    email: "shereeanthony@kog.com",
+    eyeColor: "brown",
+    friends: ["Goldie Gentry", "Briana Decker"],
+    isActive: true,
+    balance: 2764,
+    gender: "female",
+  },
 ];
 
-const MIN_SALARY = 5000;
-const TOP_WORKER = "F";
+//2) за допомогою методу reduce розрахувати загальний баланс усіх юзерів
 
-const highSalaryFilter = workers
-  .filter(({ salary }) => salary >= MIN_SALARY)
-  .sort((a, b) => a.salary - b.salary);
+console.log(
+  users.sort((a, b) => a.balance - b.balance).map((user) => user.name)
+);
 
-console.log("highSalaryFilter :>> ", highSalaryFilter);
-const findTopWorker = workers.find(({ name }) => name === TOP_WORKER);
-
-console.log("findTopWorker :>> ", findTopWorker);
+console.log(
+  users.reduce((start, { balance }) => {
+    return start + balance;
+  }, 0)
+);
