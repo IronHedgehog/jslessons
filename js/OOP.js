@@ -142,4 +142,3 @@ function bigHello(humanList) {
 }
 
 bigHello(humanList);
-
