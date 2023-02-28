@@ -1,81 +1,57 @@
-// 1) Створи функцію sortByBalance(users)
-// так, щоб вона повертала масив користувачів відсортований за зростанням їх балансу (властивість balance)
-// за допомогою ланцюжка методів вивести імена юзерів відсортованих за зростанням їх балансу (sort,map)
+// Створити класс Сar який буде містити поля brand,model,price. додати до класу
+// метод який повертає ціну та метод який може дозволити змінювати ціну.
+// додати приватну властивість engine
+// додати до неї гетери та сетери (переглянути класс Worker який ми писали на уроці)
 
-const users = [
-  {
-    name: "Moore Hensley",
-    email: "moorehensley@indexia.com",
-    eyeColor: "blue",
-    friends: ["Sharron Pace"],
-    isActive: false,
-    balance: 2811,
-    gender: "male",
-  },
-  {
-    name: "Sharlene Bush",
-    email: "sharlenebush@tubesys.com",
-    eyeColor: "blue",
-    friends: ["Briana Decker", "Sharron Pace"],
-    isActive: true,
-    balance: 3821,
-    gender: "female",
-  },
-  {
-    name: "Ross Vazquez",
-    email: "rossvazquez@xinware.com",
-    eyeColor: "green",
-    friends: ["Marilyn Mcintosh", "Padilla Garrison", "Naomi Buckner"],
-    isActive: false,
-    balance: 3793,
-    gender: "male",
-  },
-  {
-    name: "Elma Head",
-    email: "elmahead@omatom.com",
-    eyeColor: "green",
-    friends: ["Goldie Gentry", "Aisha Tran"],
-    isActive: true,
-    balance: 2278,
-    gender: "female",
-  },
-  {
-    name: "Carey Barr",
-    email: "careybarr@nurali.com",
-    eyeColor: "blue",
-    friends: ["Jordan Sampson", "Eddie Strong"],
-    isActive: true,
-    balance: 3951,
-    gender: "male",
-  },
-  {
-    name: "Blackburn Dotson",
-    email: "blackburndotson@furnigeer.com",
-    eyeColor: "brown",
-    friends: ["Jacklyn Lucas", "Linda Chapman"],
-    isActive: false,
-    balance: 1498,
-    gender: "male",
-  },
-  {
-    name: "Sheree Anthony",
-    email: "shereeanthony@kog.com",
-    eyeColor: "brown",
-    friends: ["Goldie Gentry", "Briana Decker"],
-    isActive: true,
-    balance: 2764,
-    gender: "female",
-  },
-];
+class User {
+  static Roles = {
+    ADMIN: "admin",
+    EDITOR: "editor",
+  };
 
-//2) за допомогою методу reduce розрахувати загальний баланс усіх юзерів
+  #email;
+  #role;
 
-console.log(
-  users.sort((a, b) => a.balance - b.balance).map((user) => user.name)
-);
+  constructor({ email, role }) {
+    (this.#email = email), (this.#role = role);
+  }
 
-console.log(
-  users.reduce((start, { balance }) => {
-    return start + balance;
-  }, 0)
-);
+  get role() {
+    return this.#role;
+  }
+
+  set role(newRole) {
+    if (newRole === "") {
+      console.log("Такої ролі не існує");
+    }
+
+    this.#role = newRole;
+  }
+}
+
+const artem = new User({ email: "asdasd@gmail.com", role: User.Roles.ADMIN });
+
+console.log(artem.Roles);
+console.log(User.Roles);
+
+// console.log(artem.role);
+artem.role = User.Roles.EDITOR;
+console.log(artem.role);
+
+// задача яку обіцяв
+
+const arr = [1, 2, 3, 4, 5];
+
+Array.prototype.mnoz = function (n) {
+  return this.map(function (number) {
+    return number * n;
+  });
+};
+
+// console.log([3, 76, 2, 3, 5].mnoz(2));
+
+// console.log(arr.mnoz(10));
+
+// спробуйте тепер використовувати в інших файлах функцію mnoz якби ви зазвичай використовували якийсь метод масиву
+// вказуючи параметром на яке число множити елементи
+// const arr = [1, 2, 3, 4, 5].mnoz(2);
