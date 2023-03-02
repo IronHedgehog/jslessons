@@ -55,3 +55,15 @@ function onKeyUp(event) {
     console.log("Я натиснув комбінацію клавіш");
   }
 }
+
+const form = document.querySelector("#form");
+
+form.addEventListener("submit", onFormSubmit);
+
+function onFormSubmit(e) {
+  e.preventDefault();
+
+  const {
+    elements: { login, password },
+  } = e.currentTarget;
+}
