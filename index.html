@@ -10,6 +10,8 @@
     <title>Js</title>
   </head>
   <body>
+    <button id="create">Створити розмітку</button>
+
     <ul id="list"></ul>
     <ul id="list1"></ul>
     <ul id="imgs"></ul>
@@ -34,13 +36,33 @@
     <button id="remove">вимкнути віднімання</button>
 
     <form id="form" autocomplete="off">
-      <input type="text" placeholder="login" /><input
-        type="text"
-        placeholder="password"
-      />
+      <input type="text" name="login" placeholder="login" />
+      <input id="password" name="password" type="text" placeholder="password" />
+
+      <span id="text"> -</span>
       <button type="submit">LogIn</button>
     </form>
-    <script src="./homeworkNEW.js" type="module"></script>
+
+    <div class="block1" id="div1">
+      <div class="block2" id="div2">
+        <div class="block3" id="div3"></div>
+      </div>
+    </div>
+
+    <nav class="menu _active">
+      <button type="button" class="menu__button">
+        <span>Open</span>
+        <span>Close</span>
+      </button>
+      <ul hidden class="menu__list">
+        <li><a class="menu__link" href="">something1</a></li>
+        <li><a class="menu__link" href="">something2</a></li>
+        <li><a class="menu__link" href="">something3</a></li>
+        <li><a class="menu__link" href="">something4</a></li>
+      </ul>
+    </nav>
+
+    <!-- <script src="./homeworkNEW.js" type="module"></script> -->
     <script src="./js/events.js" type="module"></script>
   </body>
 </html>

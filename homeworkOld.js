@@ -1,13 +1,8 @@
-//1) створити в Html розмітці пустий список та додати у цей список продукти з масиву "ingredients"
-// (створювати лішки за допомогою методу createElement("li"))
-// до кожної лішки застосувати класс item(потрібно створити у css)  за допомогою JS
-// Додати кожній лішці текстовий контент у вигляді одного з продуктів
-//  та додати ці лішки до списку використовуючи синтаксис (...) додавати щось до дом дерева можна тільки один раз.
+// 1)створити у index.html кнопку
+// на цю кнопку додати прослуховувач дії "click"
+// по кліку на цю кнопку має намалюватись один зі списків минулої ДЗ або можете створити новий список.
 
-const list = document.querySelector("#list");
-const list1 = document.querySelector("#list1");
-const imgs = document.querySelector("#imgs");
-
+// приклад масиву з минулого ДЗ
 const ingredients = [
   "Potatoes",
   "Mushrooms",
@@ -17,56 +12,44 @@ const ingredients = [
   "Condiments",
 ];
 
-const ingredientsList = ingredients.map((item) => {
-  const ingrEl = document.createElement("li");
-  ingrEl.classList.add("item");
-  ingrEl.textContent = `${item}`;
-  return ingrEl;
-});
+const createButton = document.querySelector("#create");
 
-console.log(ingredientsList);
+createButton.addEventListener("click", onClick);
 
-list.append(...ingredientsList);
+function onClick(event) {
+  const ingredientsList = ingredients.map((item) => {
+    const ingrEl = document.createElement("li");
+    ingrEl.classList.add("item");
+    ingrEl.textContent = `${item}`;
+    return ingrEl;
+  });
 
-//2) створити список в HTML розмітці та за допомогою JS коду додати у цей список справи на тиждень
-// використовуючи  синтаксис похилих крапок та insertAdjacentHTML
-//  додати стилі на ваш розсуд (класи можна одразу додавати коли створюєте розмітку li)
+  list.append(...ingredientsList);
+}
 
-const events = ["click", "input", "submit", "keyup", "keydown"];
+// 2) при натисканні на "Escape" має змінюватись фон сторінки на #420042
+// при натисканні комбінації клавіш ctrl + alt + S має змінюватись фон сторінки на #303030
+// при відпусканні ваших клавіш сторінка має знову ставати білою #ffffff
 
-const markup = events
-  .map((item) => {
-    return `<li class="item2"> ${item}</li>`;
-  })
-  .join(" ");
+addEventListener("keydown", onKeyDown);
 
-list1.insertAdjacentHTML("beforeend", markup);
+function onKeyDown(e) {
+  if (e.code === "Escape") {
+    console.log("Я натиснув Escape");
+    document.body.style.backgroundColor = "#420042";
+  }
 
-//3) вивести масив данних на екран будь-яким зручним способом
-// додати стилі
-const images = [
-  {
-    url: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    alt: "White and Black Long Fur Cat",
-  },
-  {
-    url: "https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    alt: "Orange and White Koi Fish Near Yellow Koi Fish",
-  },
-  {
-    url: "https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260",
-    alt: "Group of Horses Running",
-  },
-];
+  if ((e.altKey || e.ControlLeft) & (e.code === "KeyS")) {
+    document.body.style.backgroundColor = "#303030";
+  }
+}
+addEventListener("keyup", onKeyUp);
 
-const el = images
-  .map(({ url, alt }) => {
-    return `<li > <img src="${url}" alt="${alt}" width="420"/> </li>`;
-  })
-  .join(" ");
+function onKeyUp(e) {
+  if ((e.altKey || e.ControlLeft) & (e.code === "KeyS")) {
+    document.body.style.backgroundColor = "#ffffff";
+  }
+}
 
-imgs.insertAdjacentHTML("beforeend", el);
-
-imgs.style.display = "flex";
-imgs.style.justifyContent = "space-between";
-imgs.style.listStyle = "none";
+// 3) (завдання не обов'язкове до виконання але з цікавинокою)
+// Уся середа та саме завдання для виконання знаходиться у папці task можете скопіювати їй собі та працювати тільки з JS
