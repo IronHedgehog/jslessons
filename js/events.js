@@ -126,3 +126,68 @@ function onClick1(e) {
     mmenu.classList.remove("_active");
   }
 }
+
+const buttons = document.querySelectorAll(".pressme");
+const list = document.querySelector(".list");
+
+list.addEventListener("click", onClickButton);
+
+function onClickButton(e) {
+  if (e.target.nodeName === "BUTTON") {
+    e.target.textContent = "pressed";
+  }
+  console.log(e.target);
+}
+
+// buttons.forEach((button) => {
+//   button.addEventListener("click", onClick2);
+// });
+
+function onClick2(e) {}
+
+console.log(buttons);
+
+// function onClickButton(e) {
+//   if (e.target.nodeName === "BUTTON") {
+//     console.log((e.target.textContent = ""));
+//   }
+// }
+
+// window.addEventListener("scroll", onScroll);
+
+// function onScroll(e) {
+//   console.log(`${scrollY}px`);
+//   if (scrollY === 0) {
+//     document.body.style.backgroundColor = "blue";
+//   }
+// }
+
+document.addEventListener("DOMContentLoaded", content);
+
+function content(e) {
+  console.log(document.readyState);
+  console.log("Dom");
+  console.log(innerHeight);
+}
+
+window.addEventListener("load", onLoad);
+
+function onLoad(e) {
+  console.log(document.readyState);
+  console.log("load");
+  console.log(innerHeight);
+}
+
+window.addEventListener("beforeunload", onBeforeUnload);
+
+function onBeforeUnload(e) {
+  e.preventDefault();
+
+  e.returnValue = "";
+}
+
+window.addEventListener("unload", onUnLoad);
+
+function onUnLoad(e) {
+  console.log("asd :>>");
+}
