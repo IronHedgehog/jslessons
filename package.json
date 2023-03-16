@@ -2,17 +2,17 @@
   "name": "jslessons",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://ironhedgehog.github.io/jslessons/",
+  "homepage": "https://IronHedgehog.github.io/jslessons",
   "scripts": {
     "start": "parcel src/*.html",
     "build": "parcel build src/*.html --public-url /jslessons/"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/IronHedgehog/jslessons"
+    "url": "git+https://github.com/goitacademy/parcel-project-template.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/goitacademy/parcel-project-template/issues"
