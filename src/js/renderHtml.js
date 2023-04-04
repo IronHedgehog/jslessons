@@ -23,7 +23,7 @@ function createLiFromStorage(VALUES_KEY) {
 }
 
 function createLiImg() {
-  return (gallery = galleryItems
+  return galleryItems
     .map(({ preview, original, description }) => {
       return `<li class="galleryItem">
               <a class="gallery-link" href="${original}">
@@ -31,7 +31,7 @@ function createLiImg() {
               </a>
             </li>`;
     })
-    .join(' '));
+    .join(' ');
 }
 
 export { createLi, createLiFromStorage, createLiImg };
