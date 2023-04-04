@@ -1,3 +1,5 @@
+import { galleryItems } from './imgs';
+
 function createLi(email, password) {
   const markup = `<li> Email: ${email}, Password: ${password}</li>`;
   return markup;
@@ -20,4 +22,16 @@ function createLiFromStorage(VALUES_KEY) {
   console.log(item);
 }
 
-export { createLi, createLiFromStorage };
+function createLiImg() {
+  return (gallery = galleryItems
+    .map(({ preview, original, description }) => {
+      return `<li class="galleryItem">
+              <a class="gallery-link" href="${original}">
+                <img class="gallery-img" src="${preview}" alt="${description}" data-sourse="${original}"  >
+              </a>
+            </li>`;
+    })
+    .join(' '));
+}
+
+export { createLi, createLiFromStorage, createLiImg };
