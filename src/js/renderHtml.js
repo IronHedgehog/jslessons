@@ -22,7 +22,20 @@ function createLiFromStorage(VALUES_KEY) {
   console.log(item);
 }
 
-function createLiImg() {
+function createLiImg(filterValue) {
+  if (filterValue) {
+    return galleryItems
+      .filter(({ filter }) => filter === filterValue)
+      .map(({ preview, original, description }) => {
+        return `<li class="galleryItem">
+              <a class="gallery-link" href="${original}">
+                <img class="gallery-img" src="${preview}" alt="${description}" data-sourse="${original}"  >
+              </a>
+            </li>`;
+      })
+      .join(' ');
+  }
+
   return galleryItems
     .map(({ preview, original, description }) => {
       return `<li class="galleryItem">
@@ -34,4 +47,46 @@ function createLiImg() {
     .join(' ');
 }
 
-export { createLi, createLiFromStorage, createLiImg };
+function createFilters() {
+  const set = new Set();
+  const filters = [];
+
+  for (const item of galleryItems) {
+    if (!filters.includes(item.filter)) {
+      filters.push(item.filter);
+    }
+  }
+
+  const filter = filters
+    .map(item => {
+      return `<li class="filter-item">
+             ${item}
+            </li>`;
+    })
+    .join(' ');
+  return filter;
+}
+
+function createCountry(country) {
+  console.log(country);
+
+  const markUp = country
+    .map(
+      ({ name, capital }) =>
+        `<li class="">
+   <p>${name.official}</p>
+   <p>${capital}</p>
+   </li>`
+    )
+    .join(' ');
+
+  return markUp;
+}
+
+export {
+  createLi,
+  createLiFromStorage,
+  createLiImg,
+  createFilters,
+  createCountry,
+};
