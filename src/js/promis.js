@@ -40,34 +40,30 @@ const func = async () => {
   }
 };
 
-const BASE_URL = 'https://restcountries.com/v3.1';
-const NeededFIELDS = '?fields=name,capital,population,flags,languages';
-export default class NewClass {
-  constructor() {
-    this.value = '';
-  }
-  fetchCountries() {
-    return fetch(`${BASE_URL}/name/${this.value}${NeededFIELDS}`)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.status);
-        }
-        return response.json();
-      })
-      .catch(err => {
-        console.log('err');
-      });
-  }
+const resProm = text => {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(text), 1000);
+  });
+};
 
-  get val() {
-    return this.value;
-  }
+const promiseA = resProm('PromiseA');
+const promiseB = resProm('promiseB');
+const promiseC = resProm('promiseC');
+const promiseD = resProm('promiseD');
+const promiseE = resProm('promiseE');
 
-  set val(newVal) {
-    this.value = newVal;
-  }
-}
+Promise.all([promiseA, promiseB, promiseC, promiseD, promiseE])
+  .then(response => console.log(response))
+  .catch(err => err.status);
 
-const newClass = new NewClass();
+Promise.race([promiseB, promiseC, promiseD, promiseE]).then(response =>
+  console.log(response)
+);
 
-console.log(newClass.fetchCountries());
+new Promise(resolve => resolve('Все добре')).then(response =>
+  console.log(response)
+);
+
+new Promise(reject => reject('Все не добре')).then(response =>
+  console.log(response)
+);

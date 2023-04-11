@@ -1,42 +1,44 @@
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+// body {
+//   margin: 0;
+//   padding: 0;
+//   box-sizing: border-box;
 
-  height: 100vh;
+//   height: 100vh;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   overflow: hidden;
 
-  font-family: 'Courier New', Courier, monospace;
+//   font-family: 'Courier New', Courier, monospace;
 
-  cursor: none;
+//   cursor: none;
 
-  background-color: gray;
-}
+//   background-color: gray;
+// }
 
-#cursor {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 5px solid black;
-  border-radius: 50%;
-}
+// @keyframes animate {
+//   0% {
+//     rotate: 0deg;
+//   }
+//   100% {
+//     rotate: 360deg;
+//   }
+// }
 
-h1:hover ~ #cursor {
-  width: 100px;
-  height: 100px;
-  border: 2px dashed black;
-  animation: animate 3s linear infinite;
-}
+// #cursor {
+//   position: absolute;
+//   width: 20px;
+//   height: 20px;
+//   border: 5px solid black;
+//   border-radius: 50%;
+//   transition: 0.1s;
+//   transform: translate(-50%, -50%);
+//   animation: animate 3s linear infinite;
+// }
 
-@keyframes animate {
-  0% {
-    rotate: 0deg;
-  }
-  100% {
-    rotate: 360deg;
-  }
-}
+// h1:hover ~ #cursor {
+//   width: 100px;
+//   height: 100px;
+//   border: 2px dashed black;
+// }
