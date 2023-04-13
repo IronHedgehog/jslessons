@@ -1,5 +1,7 @@
 const BASE_URL = 'https://restcountries.com/v3.1/';
 
+// const URL_PARAMS = '?fields=name,flags,languages&languages=ukrainian';
+
 export default class NewClass {
   constructor() {
     this.value = 'Ukraine';

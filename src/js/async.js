@@ -1,3 +1,5 @@
+const { default: axios } = require('axios');
+
 const refs = {
   seconds: document.querySelector('#clock'),
 };
