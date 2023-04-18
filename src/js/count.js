@@ -2,7 +2,6 @@ import NewClass from '../views/country';
 import Notiflix from 'notiflix';
 import { createCountry, createCountrys } from './renderHtml';
 import { debounce } from 'debounce';
-import throttle from 'lodash.throttle';
 
 const refs = {
   input: document.querySelector('#search-box'),
@@ -37,7 +36,6 @@ function inputValue(e) {
     }
 
     if (response.length === 1) {
-      console.log(response);
       createHtml(createCountrys(response), createCountry(response));
       Notiflix.Notify.info('Ми знайшли! Ура!');
       return;

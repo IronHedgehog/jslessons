@@ -4,7 +4,7 @@ const BASE_URL = 'https://restcountries.com/v3.1/';
 
 export default class NewClass {
   constructor() {
-    this.value = 'Ukraine';
+    this.value = '';
   }
 
   fetchCountries() {
