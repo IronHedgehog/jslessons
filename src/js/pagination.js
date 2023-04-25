@@ -1,69 +1,103 @@
 const { default: axios } = require('axios');
-// const { debounce } = require('debounce');
-// import Notiflix from 'notiflix';
+const { debounce } = require('debounce');
+import Notiflix from 'notiflix';
+
+const Base_URL = 'https://pixabay.com/api/';
+const API_KEY = '25303063-e3dfa67f3227afe1b77421770';
+const http_parametrs = `&image_type=photo&orientation=horizontal&safesearch=true&per_page=5`;
 
 const refs = {
-  postDiv: document.querySelector('.posts'),
-  // q: document.querySelector('.q'),
-  loadMore: document.querySelector('.button'),
+  input: document.querySelector('.q'),
+  gallery: document.querySelector('.gallery'),
+  button: document.querySelector('.button'),
 };
 
-const B_URL = 'https://jsonplaceholder.typicode.com/';
-const currentResource = 'posts';
-
-let dataLimit = 10;
 let page = 1;
 
-async function getData(page = 1, limit = 10) {
-  // q = 'car'
-  const response = await axios.get(
-    `${B_URL}${currentResource}?&_page=${page}&_limit=${limit}`
-    // q=${q}
-  );
-  const data = await response.data;
-  return data;
-}
-
-async function postMarkup(data) {
-  const markUp = data
-    .map(({ title }) => {
-      return `<div>${title} </div>`;
-    })
-    .join(' ');
-  refs.postDiv.insertAdjacentHTML('beforeend', markUp);
-}
-
-window.addEventListener('load', onLoad);
-
-async function onLoad(e) {
-  const data = await getData();
-  postMarkup(data);
-}
-
-refs.loadMore.addEventListener('click', onClick);
-
-async function onClick(e) {
-  const pageLimit = 110 / dataLimit;
-  page += 1;
-  if (page <= pageLimit) {
-    refs.loadMore.style.display = 'block';
-    const data = await getData(page);
-    postMarkup(data);
-  } else {
-    refs.loadMore.style.display = 'none';
+async function fetch(q = 'car', page = 1) {
+  try {
+    const fetch = await axios.get(
+      `${Base_URL}?key=${API_KEY}&q=${q}&page=${page}${http_parametrs}`
+    );
+    const response = fetch.data;
+    return response;
+  } catch (error) {
+    console.log(error.message);
   }
 }
+refs.input.addEventListener('input', debounce(onInput, 300));
+refs.button.addEventListener('click', onClick);
 
-// refs.q.addEventListener('input', debounce(onInput, 300));
+async function render(data) {
+  const markUp = data
+    .map(({ comments, downloads, likes, webformatURL, tags }) => {
+      return `<img src="${webformatURL}" alt="${tags}">
+      <div>comments: ${comments} </div>
+      <div>download: ${downloads}</div>
+      <div> likes:${likes} </div>`;
+    })
+    .join(' ');
 
-// async function onInput(e) {
-//   const value = e.target.value.trim();
+  return markUp;
+}
 
-//   if (!value) {
-//     Notiflix.Notify.info('Введіть тему');
-//     return;
-//   }
+async function onInput(e) {
+  const value = e.target.value.trim();
 
-//   const data = await getData(value);
-//   postMarkup(data);
-// }
+  if (value === '') {
+    refs.button.classList.add('is-hidden');
+    refs.gallery.innerHTML = '';
+    Notiflix.Notify.info('Введіть данні');
+    return;
+  }
+
+  const data = await fetch(value);
+
+  const markUp = await render(data.hits);
+  Notiflix.Notify.info(
+    `Ура ми знайшли  ${data.total} картинку за вашим запитом`
+  );
+
+  if (markUp !== '') {
+    refs.button.classList.remove('is-hidden');
+  }
+
+  refs.gallery.insertAdjacentHTML('beforeend', markUp);
+}
+
+async function onClick(e) {
+  // page = page + 1;
+  const value = refs.input.value.trim();
+  page += 1;
+
+  const data = await fetch(value, page);
+
+  const images = data.total - page * 5;
+
+  // Тернарний оператор
+
+  // images <= 0
+  // ? Notiflix.Notify.info(`Нажаль картинки завершились`)
+  // : Notiflix.Notify.info(
+  //     `Ура ми знайшли  ${images} картинку за вашим запитом`
+  //   );
+
+  if (images <= 0) {
+    refs.button.classList.add('is-hidden');
+    Notiflix.Notify.info(`Нажаль картинки завершились`);
+  } else {
+    Notiflix.Notify.info(`Ура ми знайшли  ${images} картинку за вашим запитом`);
+  }
+
+  const markUp = await render(data.hits);
+
+  refs.gallery.innerHTML = '';
+  refs.gallery.insertAdjacentHTML('beforeend', markUp);
+}
+
+// fetch(
+//   'https://pixabay.com/api/?key=25303063-e3dfa67f3227afe1b77421770&q=car&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=1'
+// )
+//   .then(response => response.json())
+//   .then(res => console.log(res))
+//   .catch(err => console.log(err));
