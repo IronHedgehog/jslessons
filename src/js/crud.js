@@ -23,7 +23,7 @@ async function getTodos() {
 window.addEventListener('DOMContentLoaded', getTodos());
 
 function createHTML({ completed, id, title }) {
-  const markup = `<div class="form-check" id="${id}">
+  const markup = `<div class="form-check"  id="${id}">
   <label class="form-check-label">
     <input id="${id}" type="checkbox" class="form-check-input" ${
     completed === true ? 'checked' : null
@@ -96,8 +96,7 @@ refs.todoDiv.addEventListener('change', onUpdate);
 async function onUpdate(e) {
   const updatedId = e.target.getAttribute('id');
 
-  const completed = document.querySelector(`input`).checked;
-  console.log('object :>> ', completed);
+  const completed = document.querySelector(`input`);
 
   const data = await fetch(
     `https://jsonplaceholder.typicode.com/todos/${updatedId}`,
