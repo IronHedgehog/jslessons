@@ -8,58 +8,54 @@
 import Notiflix from 'notiflix';
 
 const refs = {
-  todoDiv: document.querySelector('#todos'),
-  addButton: document.querySelector('#add'),
-  input: document.querySelector('#create-input'),
+  form: document.querySelector('#form'),
+  phoneList: document.querySelector('#todos'),
+  updateForm: document.querySelector('#updateForm'),
 };
 
-async function getTodos() {
-  const data = await fetch('http://localhost:7775/posts');
-  const todos = await data.json();
+async function getPhonebook() {
+  const data = await fetch('http://localhost:7775/contacts');
+  const phones = await data.json();
 
-  todos.forEach(todo => createHTML(todo));
+  phones.forEach(todo => createHTML(todo));
 }
 
-window.addEventListener('DOMContentLoaded', getTodos());
+window.addEventListener('DOMContentLoaded', getPhonebook());
 
-function createHTML({ completed, id, title }) {
+function createHTML({ name, id, phone }) {
   const markup = `<div class="form-check"  id="${id}">
-  <label class="form-check-label">
-    <input id="${id}" type="checkbox" class="form-check-input" ${
-    completed === true ? 'checked' : null
-    // completed && "checked"
-  }/>
-   ${title}
-  </label>
-  <button
-    id="${id}"
-    type="button"
-    class="btn-close"
-    aria-label="Close"
-    style="font-size: 10px"
-  ></button>
+   ${name}: ${phone}
+   <button type="button" delete id="${id}">Delete</button>
+   <button
+   type="button"
+   class="btn btn-primary"
+   data-toggle="modal"
+   data-target="#exampleModalCenter"
+    update
+    id="${id}">
+  Update
+   </button>
 </div>`;
-  refs.todoDiv.insertAdjacentHTML('beforeend', markup);
+  refs.phoneList.insertAdjacentHTML('beforeend', markup);
 }
 
-refs.addButton.addEventListener('click', addTodo);
+refs.form.addEventListener('submit', onSubmit);
 
-async function addTodo() {
-  const todoValue = refs.input.value.trim();
+async function onSubmit(e) {
+  e.preventDefault();
 
-  if (!todoValue) {
-    Notiflix.Notify.info('Запиши данні у інпут');
-    return;
-  }
+  const {
+    elements: { name, phone },
+  } = e.currentTarget;
 
   const postObj = {
-    title: todoValue,
-    completed: false,
+    name: name.value,
+    phone: phone.value,
   };
 
-  refs.input.value = '';
+  refs.form.reset();
 
-  const data = await fetch('http://localhost:7775/posts', {
+  const data = await fetch('http://localhost:7775/contacts', {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
@@ -67,17 +63,19 @@ async function addTodo() {
     body: JSON.stringify(postObj),
   });
 
-  const todo = await data.json();
+  const contact = await data.json();
 
-  createHTML(todo);
+  createHTML(contact);
 }
 
-refs.todoDiv.addEventListener('click', onDelete);
+refs.phoneList.addEventListener('click', onDelete);
 
 async function onDelete(e) {
-  if (e.target.nodeName !== 'BUTTON') return;
+  if (e.target.nodeName !== 'BUTTON' || e.target.hasAttribute('update')) {
+    return;
+  }
   const deletedId = e.target.getAttribute('id');
-  const data = await fetch(`http://localhost:7775/posts/${deletedId}`, {
+  const data = await fetch(`http://localhost:7775/contacts/${deletedId}`, {
     method: 'DELETE',
     headers: {
       'content-type': 'application/json',
@@ -91,23 +89,30 @@ async function onDelete(e) {
   }
 }
 
-refs.todoDiv.addEventListener('change', onUpdate);
+refs.updateForm.addEventListener('submit', onUpdate);
 
 async function onUpdate(e) {
+  e.preventDefault();
   const updatedId = e.target.getAttribute('id');
 
-  const completed = document.querySelector(`input`);
+  console.log(updatedId);
 
-  const data = await fetch(
-    `https://jsonplaceholder.typicode.com/todos/${updatedId}`,
-    {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({ completed }),
-    }
-  );
+  const {
+    elements: { updateName, updatePhone },
+  } = e.currentTarget;
+
+  const updateObj = {
+    phone: updatePhone.value,
+    name: updateName?.value,
+  };
+
+  const data = await fetch(`http://localhost:7775/contacts/${updatedId}`, {
+    method: 'PUT',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(updateObj),
+  });
 
   const res = await data.json();
 }

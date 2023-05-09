@@ -1,4 +1,16 @@
 {
-  "posts": [],
-  "contacts": []
+  "posts": [
+    {
+      "title": "anskdfkl;asdf;klasd;",
+      "completed": false,
+      "id": 1
+    }
+  ],
+  "contacts": [
+    {
+      "name": "asd",
+      "phone": "asdasd",
+      "id": 2
+    }
+  ]
 }
