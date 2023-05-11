@@ -5,12 +5,12 @@
 // U - update - оновити данні - Якщо оновити об'єкт повністю то PUT, якщо оновити точечно (одне поле) то PATCH
 // D - delete - Видалити - метод DELETE
 
-import Notiflix from 'notiflix';
-
 const refs = {
   form: document.querySelector('#form'),
   phoneList: document.querySelector('#todos'),
   updateForm: document.querySelector('#updateForm'),
+  // modal: document.querySelector('.modal'),
+  // modalBackdrop: document.querySelector('.modal-backdrop'),
 };
 
 async function getPhonebook() {
@@ -74,6 +74,7 @@ async function onDelete(e) {
   if (e.target.nodeName !== 'BUTTON' || e.target.hasAttribute('update')) {
     return;
   }
+
   const deletedId = e.target.getAttribute('id');
   const data = await fetch(`http://localhost:7775/contacts/${deletedId}`, {
     method: 'DELETE',
@@ -89,30 +90,46 @@ async function onDelete(e) {
   }
 }
 
-refs.updateForm.addEventListener('submit', onUpdate);
+refs.phoneList.addEventListener('click', onUpdate);
 
-async function onUpdate(e) {
-  e.preventDefault();
-  const updatedId = e.target.getAttribute('id');
+function onUpdate(e) {
+  if (e.target.nodeName !== 'BUTTON' || e.target.hasAttribute('delete')) return;
 
-  console.log(updatedId);
+  const updateID = e.target.getAttribute('id');
 
-  const {
-    elements: { updateName, updatePhone },
-  } = e.currentTarget;
+  refs.updateForm.addEventListener('submit', onUpdateForm);
 
-  const updateObj = {
-    phone: updatePhone.value,
-    name: updateName?.value,
-  };
+  async function onUpdateForm(e) {
+    e.preventDefault();
 
-  const data = await fetch(`http://localhost:7775/contacts/${updatedId}`, {
-    method: 'PUT',
-    headers: {
-      'content-type': 'application/json',
-    },
-    body: JSON.stringify(updateObj),
-  });
+    const {
+      elements: { updateName, updatePhone },
+    } = e.currentTarget;
 
-  const res = await data.json();
+    const updateObj = {
+      phone: updatePhone.value,
+      name: updateName.value,
+    };
+
+    const data = await fetch(`http://localhost:7775/contacts/${updateID}`, {
+      method: 'PUT',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(updateObj),
+    });
+
+    const res = await data.json();
+
+    if (res) {
+      refs.phoneList.innerHTML = '';
+      getPhonebook();
+
+      refs.updateForm.reset();
+
+      refs.updateForm.removeEventListener('submit', onUpdateForm);
+      // refs.modal.classList.remove('show');
+      // refs.modalBackdrop.classList.remove('show');
+    }
+  }
 }
