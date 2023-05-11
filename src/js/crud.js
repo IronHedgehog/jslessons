@@ -96,18 +96,15 @@ refs.todoDiv.addEventListener('change', onUpdate);
 async function onUpdate(e) {
   const updatedId = e.target.getAttribute('id');
 
-  const completed = document.querySelector(`input`);
+  const completed = document.querySelector(`input[id=${updatedId}]`).checked;
 
-  const data = await fetch(
-    `https://jsonplaceholder.typicode.com/todos/${updatedId}`,
-    {
-      method: 'PATCH',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({ completed }),
-    }
-  );
+  const data = await fetch(`http://localhost:7775/posts/${updatedId}`, {
+    method: 'PATCH',
+    headers: {
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({ completed }),
+  });
 
   const res = await data.json();
 }
