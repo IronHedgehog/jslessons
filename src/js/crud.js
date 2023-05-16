@@ -5,7 +5,6 @@
 // U - update - оновити данні - Якщо оновити об'єкт повністю то PUT, якщо оновити точечно (одне поле) то PATCH
 // D - delete - Видалити - метод DELETE
 
-//test
 const refs = {
   form: document.querySelector('#form'),
   phoneList: document.querySelector('#todos'),
