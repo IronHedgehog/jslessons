@@ -45,12 +45,13 @@ function onDblclick(e) {
 // }
 
 // paralax - зоряне небо
-//scroll - багато обьектів  observer
-//observer - безкінечний скрол
+//scroll - багато обьектів  observer +
+//observer - безкінечний скрол +
 //it`s` a trap
 // DOM - +
 //event loop - +-
 // SASS - міксини, адаптація
+//GRID -
 
 const dev = document.createElement('ul');
 
