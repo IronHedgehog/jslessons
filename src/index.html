@@ -29,6 +29,41 @@
       <button id="CLICK">CLICK ME!</button>
       <button id="CLICK">CLICK ME!</button>
     </div>
+    <picture>
+      <source
+        srcset="
+          ../assets/First-desktop-1x.jpg 1x,
+          ../assets/First-desktop-2x.jpg 2x
+        "
+        media="(min-width:1200px)"
+      />
+      <source
+        srcset="
+          ../assets/First-tablet-1x.jpg 1x,
+          ../assets/First-tablet-2x.jpg 2x
+        "
+        media="(min-width:768px)"
+      />
+      <source
+        srcset="
+          ../assets/First-phone-1x.jpg 1x,
+          ../assets/First-phone-2x.jpg 2x
+        "
+        media="(min-width:0px)"
+      />
+      <img src="../assets/First-phone-1x.jpg" alt="людина працює" />
+    </picture>
+
+    <section class="back">
+      <p class="p">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+        consectetur vero suscipit quibusdam perferendis, ipsam nulla corrupti
+        iste tempore minus qui esse maiores natus repudiandae, laboriosam modi
+        ut in necessitatibus.
+      </p>
+      <input class="inp" placeholder="E-mail" type="text" name="" />
+    </section>
+
     <script src="./js/pagination.js" type="module"></script>
   </body>
 </html>

@@ -1,1 +1,44 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
+
+html {
+  font-size: 50px;
+}
+
+.back {
+  font-size: 100px;
+
+  height: 1000px;
+  background-image: url(../../assets/background.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @media (min-device-pixel-ratio: 2),
+    (-webkit-min-device-pixel-ratio: 2),
+    (-o-min-device-pixel-ratio: 2/1),
+    (min-resolution: 2dppx) {
+    background-image: url(../../assets/background2x.jpg);
+  }
+}
+
+.p {
+  font-size: 100%;
+}
+
+.p::selection {
+  color: blue;
+  background-color: yellow;
+}
+
+.inp::placeholder {
+  color: red;
+  font-size: 20px;
+}
+
+.inp {
+  display: block;
+  width: 200px;
+  height: 200px;
+  font-size: 16px;
+  color: grey;
+}
